@@ -8,16 +8,33 @@
     <div class="col-md-8">
       <h1>Report an Incident</h1>
       <p>Please check the site before reporting an incident to see if it has already been reported. Only reliable news sources will be added to the site.</p>
-      <form class="form-horizontal" ng-subimt="addIncident(incident)">
+
+      <div class="alert alert-success" ng-show="incidentSuccess">
+        {{incidentSuccess}}
+      </div>
+
+      <form class="form-horizontal" ng-submit="addIncident(incident)">
         <div class="form-group">
-          <label class="col-sm-4">City:</label>
-          <div class="col-sm-8">
-            <input class="form-control" type="text" ng-model="incident.location">
+          <label class="col-sm-3">Source (URL):</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" ng-model="incident.url">
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-4">State:</label>
-          <div class="col-sm-8">
+          <label class="col-sm-3">Breif description:</label>
+          <div class="col-sm-9">
+            <textarea class="form-control" ng-model="incident.description"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">City:</label>
+          <div class="col-sm-9">
+            <input class="form-control" type="text" ng-model="incident.city">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">State:</label>
+          <div class="col-sm-9">
             <select class="form-control" ng-model="incident.state">
               <option value="AL">Alabama</option>
               <option value="AK">Alaska</option>
@@ -74,23 +91,23 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-sm-4">Type:</label>
-          <div class="col-sm-8">
+          <label class="col-sm-3" for="incident.crimetype">Type:</label>
+          <div class="col-sm-9">
             <div class="radio">
               <label for="type-threat">
-                <input type="type" name="incident.type" ng-model="incident.type.threat" id="type-threat" value="Verbal Threat / Threatening Letter">
+                <input type="radio" ng-model="incident.crimetype" id="type-threat" value="Verbal Threat / Threatening Letter">
                 Verbal Threat / Threatening Letter
               </label>
             </div>
             <div class="radio">
               <label for="type-vandalism">
-                <input type="type" name="incident.type" ng-model="incident.type.vandalism" id="type-vandalism" value="Vandalism/Graffiti/Property Damange">
+                <input type="radio" ng-model="incident.crimetype" id="type-vandalism" value="Vandalism/Graffiti/Property Damange">
                 Vandalism/Graffitti/Property Damange
               </label>
             </div>
             <div class="radio">
               <label for="type-violent">
-                <input type="type" name="incident.type" ng-model="incident.type.violent" id="type-violent" value="Violent (Shooting, Bombing, Physical Assault)">
+                <input type="radio" ng-model="incident.crimetype" id="type-violent" value="Violent (Shooting, Bombing, Physical Assault)">
                 Violent (Shooting, Bombing, Physical Assault)
               </label>
             </div>
